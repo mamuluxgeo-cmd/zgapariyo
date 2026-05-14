@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#8b5cf6" />
+  <title>ზღაპარიყო CRM</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div>
+        <p class="brand">ზღაპარიყო</p>
+        <h1>შეკვეთები</h1>
+      </div>
+      <button id="refreshBtn" class="small-btn">↻</button>
+    </header>
+
+    <section class="summary">
+      <div class="summary-card"><span id="currentCount">0</span><small>მიმდინარე</small></div>
+      <div class="summary-card"><span id="sentCount">0</span><small>გაგზავნილი</small></div>
+      <div class="summary-card"><span id="leftSum">0 ₾</span><small>დარჩენილი</small></div>
+    </section>
+
+    <section class="toolbar">
+      <button id="openModalBtn" class="primary-btn">+ ახალი შეკვეთა</button>
+      <input id="searchInput" class="search" placeholder="ძებნა: სახელი, ტელეფონი ან ID" />
+      <div class="filters">
+        <button class="filter active" data-filter="all">ყველა</button>
+        <button class="filter" data-filter="მიმდინარე">მიმდინარე</button>
+        <button class="filter" data-filter="გაგზავნილი">გაგზავნილი</button>
+      </div>
+    </section>
+
+    <main id="ordersList" class="orders"></main>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modalTitle">ახალი შეკვეთა</h2>
+        <button id="closeModalBtn" class="small-btn">×</button>
+      </div>
+
+      <form id="orderForm" class="form">
+        <input type="hidden" id="orderId" />
+        <label>მშობლის სახელი და გვარი<input id="parentName" required /></label>
+        <label>მობილურის ნომერი<input id="phone" required /></label>
+        <label>მისამართი<textarea id="address" rows="2" required></textarea></label>
+
+        <div class="two">
+          <label>სრული ფასი<input id="totalPrice" type="number" min="0" step="0.01" required /></label>
+          <label>გადახდილი<input id="paidAmount" type="number" min="0" step="0.01" value="0" /></label>
+        </div>
+
+        <label>როდის უნდა იყოს მზად? <small>არასავალდებულო</small><input id="dueDate" type="date" /></label>
+        <label>ბავშვის ფოტო<input id="photoInput" type="file" accept="image/*" /></label>
+        <label>ფოტოს ლინკი<input id="photoUrl" placeholder="ფოტოს ატვირთვის შემდეგ ავტომატურად შეივსება" /></label>
+        <label>შენიშვნა<textarea id="note" rows="3"></textarea></label>
+        <label>სტატუსი<select id="status"><option>მიმდინარე</option><option>გაგზავნილი</option></select></label>
+
+        <button class="primary-btn full" type="submit">შენახვა</button>
+        <p id="formMessage" class="message"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
